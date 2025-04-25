@@ -108,7 +108,7 @@ if st.session_state.response:
     st.markdown("### Response")
     st.write(st.session_state.response)        
 
-if "Not found in knowledge base." in st.session_state.response: 
+if st.session_state.response == "Not found in knowledge base." :
     st.warning("The query cannot be answered using the available information.")
 
     with st.expander("Escalate to a Human Agent"):
@@ -123,7 +123,7 @@ if "Not found in knowledge base." in st.session_state.response:
             with open("escalated_issues.txt", "a") as f:
                 f.write(f"Query: {query}\nEmail: {user_email}\nDesc: {issue_desc}\n\n")
 
-if "Not found in knowledge base." not in st.session_state.response:
+if st.session_state.response != "Not found in knowledge base." :
     with st.expander("🔍 Retrieved Chunks"):
         for chunk in chunks:
             st.markdown(f"> {chunk}")
